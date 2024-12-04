@@ -6,7 +6,7 @@ with open("02/input","r") as file:
         row = list(map(int, row.split()))
         reports.append(row)
 
-for report in reports:
+def checkValid(report):
     log = False
     valid = True
     report_sort = sorted(report)
@@ -34,8 +34,18 @@ for report in reports:
     else:
         valid = False
         log or (print(report, "INVALID BECAUSE ARRAY"), log := True)
-    
-    if valid == True:
+    return valid
+
+for report in reports:
+    if checkValid(report) == True:
         result += 1
         print(report,"VALID")
+    else:
+        for a in range(len(report)):
+            tryreport = report.copy()
+            del tryreport[a]
+            if checkValid(tryreport) == True:
+                result += 1
+                print(tryreport,"VALID")
+                break
 print(result)
