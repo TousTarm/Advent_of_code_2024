@@ -18,18 +18,14 @@ for report in reports:
                 if x < len(report)-1:
                     if report[x+1] - report[x] >3 or report[x+1] - report[x] < 1 or report[x] == report[x+1]:
                         valid = False
-                        if(log == False):
-                            print(report, "INVALID BECAUSE OF GAP ASC")
-                            log = True
+                        log or (print(report, "INVALID BECAUSE OF GAP ASC"), log := True)
 
         if (report[0] > report[1]):
             for x in range(len(report)):
                 if x < len(report)-1:
                     if report[x] - report[x+1] >3 or report[x] - report[x+1] < 1 or report[x] == report[x+1]:
                         valid = False
-                        if (log == False):
-                            print(report, "INVALID BECAUSE OF GAP DESC")
-                            log = True
+                        log or (print(report, "INVALID BECAUSE OF GAP DESC"),log := True)
 
         if (report[0] == report[1]):
             valid = False
@@ -37,9 +33,7 @@ for report in reports:
 
     else:
         valid = False
-        if (log == False):
-            print(report, "INVALID BECAUSE ARRAY")
-            log = True
+        log or (print(report, "INVALID BECAUSE ARRAY"), log := True)
 
     if valid == True:
         result += 1
